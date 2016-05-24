@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="UTF-8">
+
+<script src="angular-1.5.5/angular.min.js"></script>
+<script src="angular-1.5.5/angular-route.min.js"></script>
+<script src="angular-1.5.5/angular-animate.min.js"></script>
+<script src="wkviewerApp.js"></script>
+<title>Wikipedia Viwer</title>
+
+
+</head>
+
+<body ng-app="appWpViewer" ng-controller="MainCtrl">
+<!--<div class="container" ng-controller="MainCtrl">-->
+<div class="container" >
+  <div class="main" ng-view>
+  <section class="articlepage">
+  <div class="search">
+    <h1>Wikipedia <img id="wikiLogo" src= "https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/103px-Wikipedia-logo-v2.svg.png"  alt="wikiLogo"> Viewer</h1>
+    <h2 id = "random_page">	<a  href="https://en.wikipedia.org/wiki/Special:Random" target="_blank"> Randon Page</a></h2>
+    <label>search: </label>
+    <input id="query_text" type ="text" ng-model="queryText" my-enter="teste()" placeholder="Search for Articles" autofocus>  
+    <label class="formgroup">by:
+      <select ng-model="articlesOrder">
+        <option value="title">title</option>
+        <option value="timestamp">Date</option>
+      </select>
+    </label>
+    <label class="formgroup">
+      <input type="radio" ng-model="direction" name="direction" checked>
+      ascending
+     </label>
+    <label class="formgroup">
+      <input type="radio" ng-model="direction" name="direction" value="reverse">
+      descending
+    </label>
+   
+  </div>
+  <!-- aqui e a lista de artigos usar o ng-show-->
+  <div class="articleslist" ng-show="hasArticles">
+      <ul >
+           <!-- <li ng-animate="'animate'" class="article cf" ng-repeat="item in articles | filter: query | orderBy: articlesOrder:direction">
+         <a href="#/details/{{articles.indexOf(item)}}"> --> 
+         <h1>Articles</h1>
+         <li ng-animate="'animate'" class="article cf" ng-repeat="item in articles | orderBy: articlesOrder:direction">     
+            <div class="info">           
+              <h2>{{item.title}}</h2>
+              <h3>{{item.timestamp}}</h3>
+              <h3 ng-bind-html="item.snippet | unsafe"></h3>
+            </div>
+          <!--</a> -->
+        </li>
+      </ul>  
+  </div>
+</section>
+  
+  </div>
+ </div>
+</body>
+
+</html>
